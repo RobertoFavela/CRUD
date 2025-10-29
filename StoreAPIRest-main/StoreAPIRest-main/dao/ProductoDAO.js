@@ -27,6 +27,10 @@ class ProductoDAO {
     async eliminarProductoPorId(id){
         return await Producto.findByIdAndDelete(id);
     }
+
+    async obtenerProductosPorNombre(filtro){
+        return await Producto.find({ nombre: { $regex: filtro, $options: "i" } });
+    }
 }
 
 export default new ProductoDAO();
